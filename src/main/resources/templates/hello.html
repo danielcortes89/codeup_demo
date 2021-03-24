@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+</head>
+<body>
+<p>Replace</p>
+<nav th:replace="fragments/navbar :: main-nav">
+    This will be replaced
+</nav>
+
+<p>Include</p>
+<div th:include="fragments/navbar :: main-nav">
+    The entire content of the partial will be *included* inside this div.
+</div>
+
+<h1>Hello <span th:text="${name}" >World!!!</span></h1>
+
+</body>
+</html>

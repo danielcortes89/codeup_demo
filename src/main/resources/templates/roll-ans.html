@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Join</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<h2 th:text="${guess}">No guess</h2>
+<h2 th:text="${answer}">No answer</h2>
+
+<h1 th:if="${correct}">You got it!</h1>
+<h1 th:if="${!correct}">You did not get it!</h1>
+<!--<h1 th:if="${guess != answer}">You did not get it!</h1>-->
+
+</body>
+</html>
