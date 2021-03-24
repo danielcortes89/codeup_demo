@@ -8,14 +8,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.*;
+
 @Controller
 public class PostController {
-    @GetMapping("/posts")
-    @ResponseBody
-    public String seeAllPosts() {
-
-        return "posts index page";
-    }
+//    @GetMapping("/posts")
+//    @ResponseBody
+//    public String seeAllPosts() {
+//
+//        return "posts index page";
+//    }
 
     @GetMapping("/posts/{id}")
     @ResponseBody
@@ -44,5 +46,19 @@ public class PostController {
 
         viewModel.addAttribute("post", template);
         return "posts/show";
+    }
+
+    @GetMapping("/posts")
+    public String showHome(Model viewModel){
+        Post template = new Post("The Title!", "The Body");
+        Post templateTwo = new Post("Another Title!", "Another Body");
+
+        List<Post> posts = new ArrayList<>();
+
+        posts.add(template);
+        posts.add(templateTwo);
+
+        viewModel.addAttribute("posts", posts);
+        return "posts/index";
     }
 }

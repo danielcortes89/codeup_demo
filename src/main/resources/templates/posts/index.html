@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
+<ol>
+    <li th:each="post : ${posts}" th:text="${post.getTitle()}"></li>
+</ol>
 
 </body>
 </html>
