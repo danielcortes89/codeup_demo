@@ -1,6 +1,8 @@
 package com.codeup.codeup_demo;
 
+import com.codeup.codeup_demo.models.Post;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,5 +35,14 @@ public class PostController {
     @ResponseBody
     public String createPost(){
         return "create a new post";
+    }
+
+    @GetMapping("/post")
+
+    public String showPost(Model viewModel){
+        Post template = new Post("The Title!", "The Body");
+
+        viewModel.addAttribute("post", template);
+        return "posts/show";
     }
 }
