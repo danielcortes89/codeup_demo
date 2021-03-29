@@ -11,4 +11,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findByTitleEquals(String titleToSearchFor);
 
 
+    List<Post> searchByBodyLike(String post);
 }

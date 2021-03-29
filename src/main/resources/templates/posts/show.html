@@ -11,5 +11,9 @@
 <h1 th:text="${post.getTitle()}">Placeholder</h1>
 <p th:text="${post.getBody()}">Placeholder</p>
 
+<form th:action="${'/posts/' + post.getId() + '/delete'}">
+    <input type="submit" value="Delete Post">
+</form>
+
 </body>
 </html>

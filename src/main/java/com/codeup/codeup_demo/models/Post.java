@@ -16,6 +16,9 @@ public class Post {
     @Column(name = "body", columnDefinition = "TEXT", length = 3000, nullable = false)
     private String body;
 
+    @Column
+    private User owner;
+
     public Post(){
 
     }
@@ -23,6 +26,11 @@ public class Post {
     public Post(String title, String body){
         this.title = title;
         this.body = body;
+    }
+    public Post(String title, String body, User owner){
+        this.title = title;
+        this.body = body;
+        this.owner = owner;
     }
 
     public Post(Long id, String title, String body){
