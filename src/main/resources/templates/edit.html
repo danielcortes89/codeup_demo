@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--/*@thymesVar id="oldPost" type=""*/-->
+<form th:action="${'/posts/'+ oldPost.getId() +'/edit'}" method="post">
+    <h2>Create post form</h2>
+
+    <label for="title"></label>
+    <input type="text" id="title" name="post_title" th:value="${oldPost.title}">
+
+    <br>
+
+    <label for="body">Body</label>
+    <input type="text" id="body" name="post_body" th:value="${oldPost.body}">
+
+    <br>
+
+    <input type="submit" value="Edit post">
+</form>
+</body>
+</html>

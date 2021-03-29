@@ -7,8 +7,15 @@
 </head>
 <body>
 <ol>
+    <!--/*@thymesVar id="getTitle" type=""*/-->
     <li th:each="post : ${posts}" th:text="${post.getTitle()}"></li>
 </ol>
+<!--<main class="container">-->
+<!--    <div th:each="post : ${posts}">-->
+<!--        <h2>${post.getTitle}</h2>-->
+<!--    </div>-->
+<!--    -->
+<!--</main>-->
 
 </body>
 </html>
