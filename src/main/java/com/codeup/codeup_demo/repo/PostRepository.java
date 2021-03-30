@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-    List<Post> findByTitleEquals(String titleToSearchFor);
+//    List<Post> findByTitleEquals(String titleToSearchFor);
 
 
-    List<Post> searchByBodyLike(String post);
+//    List<Post> findAllByByBodyLike(String post);
 }

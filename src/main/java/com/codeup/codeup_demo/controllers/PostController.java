@@ -23,7 +23,7 @@ public class PostController {
 
     @GetMapping("/posts")
     public String seeAllPosts(Model viewModel){
-        List<Post> postsFromDB = postDao.searchByBodyLike("post");
+        List<Post> postsFromDB = postDao.findAll();
 
         viewModel.addAttribute("posts", postsFromDB);
         return "posts/index";
@@ -31,7 +31,7 @@ public class PostController {
 
 
     @GetMapping("/posts/${id}")
-    public String showPost(@PathVariable long id , Model viewModel){
+    public String showOnePost(@PathVariable Long id, Model viewModel){
         viewModel.addAttribute("post", postDao.getOne(id));
         return "posts/show";
     }

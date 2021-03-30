@@ -12,13 +12,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(name = "username", nullable = false)
     private String username;
 
     @Column(nullable = true)
     private String email;
 
+    @Column(nullable = true)
+    private String password;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<Post> posts;
 
     public User(String username, String email){
         this.username = username;
@@ -69,10 +73,5 @@ public class User {
         this.posts = posts;
     }
 
-    @Column(nullable = true)
-    private String password;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    private List<Post> posts;
 
 }

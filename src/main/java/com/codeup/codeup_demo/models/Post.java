@@ -1,6 +1,7 @@
 package com.codeup.codeup_demo.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -16,7 +17,8 @@ public class Post {
     @Column(name = "body", columnDefinition = "TEXT", length = 3000, nullable = false)
     private String body;
 
-    @Column
+    @ManyToOne
+    @JoinColumn (name = "user_id")
     private User owner;
 
     public Post(){
