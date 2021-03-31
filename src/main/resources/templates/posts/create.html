@@ -5,14 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/posts/create">
+<form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+
     <h2>Create post form</h2>
     <label for="title"></label>
-    <input type="text" id="title" name="post_title">
+    <input type="text" th:field="*{title}">
+
     <hr>
+
     <label for="body">Body</label>
-    <input type="text" id="body" name="post_body">
+    <input type="text" th:field="*{body}" >
+
     <br>
+
     <input type="submit" value="create post">
 </form>
 </body>

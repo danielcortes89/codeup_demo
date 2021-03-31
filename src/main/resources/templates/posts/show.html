@@ -10,6 +10,7 @@
 <h1>Show a post!</h1>
 <h1 th:text="${post.getTitle()}">Placeholder</h1>
 <p th:text="${post.getBody()}">Placeholder</p>
+<p th:>You can contact me at: <span th:text="${post.getOwner().getEmail()}"></span></p>
 
 <form th:action="${'/posts/' + post.getId() + '/delete'}">
     <input type="submit" value="Delete Post">

@@ -4,6 +4,8 @@ import com.codeup.codeup_demo.models.Post;
 import com.codeup.codeup_demo.models.User;
 import com.codeup.codeup_demo.repo.PostRepository;
 import com.codeup.codeup_demo.repo.UserRepository;
+import com.codeup.codeup_demo.services.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,9 @@ import java.util.*;
 
 @Controller
 public class PostController {
+    @Autowired
+    private EmailService emailService;
+
     private final PostRepository postDao;
     private final UserRepository userDao;
 
@@ -31,28 +36,34 @@ public class PostController {
 
 
     @GetMapping("/posts/${id}")
-    public String showOnePost(@PathVariable Long id, Model viewModel){
-        viewModel.addAttribute("post", postDao.getOne(id));
+    public String showOnePost(@PathVariable String id, Model model){
+        Long cleaned = Long.parseLong(id);
+
+        model.addAttribute("post", postDao.getOne(cleaned));
         return "posts/show";
     }
 
     @GetMapping("/posts/create")
     public String viewPostForm(Model viewModel){
+        viewModel.addAttribute("post", new Post());
         return "posts/create";
     }
 
     @PostMapping("/posts/create")
     public String createPost(
-            Model viewModel,
-            @RequestParam("post_title") String title,
-            @RequestParam("post_body") String body){
-        User user = userDao.getOne(1);
+            @ModelAttribute Post post
+            ){
+        User user = userDao.getOne(1L);
 
-        Post postToSave = new Post(title, body, user);
 
-        postDao.save(postToSave);
+        post.setOwner(user);
+//        user.getPosts().add(post);
 
-        return "posts/index";
+        postDao.save(post);
+
+        emailService.prepareAndSend(post, "New Post!", "Go check our site to see it!");
+
+        return "redirect:posts";
     }
 
     @GetMapping("/posts/{id}/edit")
