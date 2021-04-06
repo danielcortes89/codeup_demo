@@ -35,7 +35,7 @@ public class PostController {
     }
 
 
-    @GetMapping("/posts/${id}")
+    @GetMapping("/posts/{id}")
     public String showOnePost(@PathVariable String id, Model model){
         Long cleaned = Long.parseLong(id);
 
@@ -87,7 +87,7 @@ public class PostController {
         return "posts/index";
     }
 
-    @PostMapping("/posts/${id}/delete")
+    @PostMapping("/posts/{id}/delete")
     @ResponseBody
     public String deletePost(@PathVariable Long id){
         postDao.deleteById(id);
